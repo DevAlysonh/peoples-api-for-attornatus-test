@@ -42,7 +42,7 @@ public class PeopleResource {
 		return ResponseEntity.ok().body(obj);
 	}
 
-	@PostMapping
+	@PostMapping(value = "/pessoas")
 	public ResponseEntity<People> create(@RequestBody People people) {
 		People obj = service.createPeople(people);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -55,13 +55,6 @@ public class PeopleResource {
 		return ResponseEntity.ok().body(newData);
 	}
 	
-	@PostMapping(value = "/pessoas/{id}/endereco")
-	public ResponseEntity<Address> createAddress(@PathVariable Long id, @RequestBody Address address) {
-		Address newAddress = addressService.createAddress(id, address);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newAddress.getId()).toUri();
-		return ResponseEntity.created(uri).body(newAddress);
-	}
-
 	@DeleteMapping(value = "/pessoas/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.deletePeople(id);

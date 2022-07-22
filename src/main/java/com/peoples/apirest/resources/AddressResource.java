@@ -39,13 +39,13 @@ public class AddressResource {
 		return ResponseEntity.ok().body(address);
 	}
 
-	/*@PostMapping
-	public ResponseEntity<Address> createAddress(@RequestBody Address adress) {
-		Address newAddress = service.createAddress(adress);
+	@PostMapping(value = "/pessoas/{id}/endereco")
+	public ResponseEntity<Address> createAddress(@PathVariable Long id, @RequestBody Address address) {
+		Address newAddress = service.createAddress(id, address);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newAddress.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(newAddress);
-	}*/
+	}
 
 	@PutMapping(value = "/enderecos/{id}")
 	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
