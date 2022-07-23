@@ -32,6 +32,7 @@ public class AddressService {
 	public Address createAddress(Long id, Address address) {
 		People people = peopleRepository.getReferenceById(id);
 		address.setPeople(people);
+		setIsMainAddress(address);
 		return repository.save(address);
 	}
 
@@ -52,5 +53,13 @@ public class AddressService {
 		newAddress.setNumber(address.getNumber());
 		newAddress.setCity(address.getCity());
 	}
-
+	
+	/*Define se é o endereço principal do usuário*/
+	private void setIsMainAddress(Address address) {
+		if(address.getIsMain() == null) {
+			address.setIsMain(false);
+		}else {
+			address.setIsMain(true);
+		}
+	}
 }
