@@ -51,6 +51,10 @@ public class People implements Serializable {
 	public String getBirthDate() {
 		return birthDate;
 	}
+	
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
 
 	@Override
 	public int hashCode() {

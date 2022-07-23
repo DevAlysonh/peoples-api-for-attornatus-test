@@ -39,9 +39,10 @@ public class PeopleService {
 		repository.deleteById(id);
 	}
 
-	/* Função para atualizar os dados da pessoa */
+	/*Função para atualizar os dados da pessoa*/
 	private void updateData(People newData, People data) {
 		// TODO Auto-generated method stub
 		newData.setName(data.getName());
+		newData.setBirthDate(data.getBirthDate());
 	}
 }
