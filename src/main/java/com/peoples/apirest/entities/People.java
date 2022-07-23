@@ -1,6 +1,7 @@
 package com.peoples.apirest.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,8 +29,8 @@ public class People implements Serializable {
 	@NotBlank
 	private String name;
 	
-	@Column(length = 10)
-	private String birthDate;
+	@Column()
+	private LocalDate birthDate;
 	
 	@OneToMany(mappedBy = "people")
 	private List<Address> address = new ArrayList<>();
@@ -37,7 +38,7 @@ public class People implements Serializable {
 	public People() {
 	}
 
-	public People(Long id, String name, String birthDate) {
+	public People(Long id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,11 +57,11 @@ public class People implements Serializable {
 		this.name = name;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 	
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
