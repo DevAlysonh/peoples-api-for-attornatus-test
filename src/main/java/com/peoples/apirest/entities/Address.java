@@ -41,7 +41,7 @@ public class Address implements Serializable {
 	@Column(length = 50)
 	private String city;
 	
-	@Column
+	@Column(nullable = false)
 	private Integer isMain = 0;
 	
 	@ManyToOne
