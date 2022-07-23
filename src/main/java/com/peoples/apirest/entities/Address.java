@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,7 +42,7 @@ public class Address implements Serializable {
 	private String city;
 	
 	@Column
-	private Number isMain = 0;
+	private Integer isMain = 0;
 	
 	@ManyToOne
 	@JoinColumn(name = "people_id")
@@ -52,7 +53,7 @@ public class Address implements Serializable {
 		
 	}
 
-	public Address(Long id, String street, String postalCode, String number, String city, Number isMain) {
+	public Address(Long id, String street, String postalCode, String number, String city, Integer isMain) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -112,11 +113,11 @@ public class Address implements Serializable {
 	}
 	
 
-	public Number getIsMain() {
+	public Integer getIsMain() {
 		return isMain;
 	}
 
-	public void setIsMain(Number isMain) {
+	public void setIsMain(Integer isMain) {
 		this.isMain = isMain;
 	}
 
