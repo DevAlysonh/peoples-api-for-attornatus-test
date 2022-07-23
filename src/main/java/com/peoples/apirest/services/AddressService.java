@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.peoples.apirest.entities.Address;
 import com.peoples.apirest.entities.People;
@@ -32,7 +34,7 @@ public class AddressService {
 	public Address createAddress(Long id, Address address) {
 		People people = peopleRepository.getReferenceById(id);
 		address.setPeople(people);
-		setIsMainAddress(address);
+		validateMainAddress(address);
 		return repository.save(address);
 	}
 
@@ -55,9 +57,14 @@ public class AddressService {
 	}
 	
 	/*Define se é o endereço principal do usuário*/
-	private void setIsMainAddress(Address address) {
+	private void validateMainAddress(Address address) {
 		if(address.getIsMain() == null) {
 			address.setIsMain(false);
+		}
+		
+		if(repository.findByIsMainAndPeople_Id(address.getIsMain(), address.getPeople().getId()).isPresent()) {
+			
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Endereço principal já está definido.");
 		}
 	}
 }
