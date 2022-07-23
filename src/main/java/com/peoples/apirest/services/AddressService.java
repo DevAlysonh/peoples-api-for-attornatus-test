@@ -58,8 +58,6 @@ public class AddressService {
 	private void setIsMainAddress(Address address) {
 		if(address.getIsMain() == null) {
 			address.setIsMain(false);
-		}else {
-			address.setIsMain(true);
 		}
 	}
 }
