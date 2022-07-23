@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,36 +28,37 @@ public class AddressResource {
 	private AddressService service;
 
 	@GetMapping(value = "/enderecos")
-	public ResponseEntity<List<Address>> findAll() {
-
-		List<Address> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+	@ResponseStatus(HttpStatus.OK)
+	public List<Address> findAll() {
+		
+		return service.findAll();
 	}
 
 	@GetMapping(value = "/enderecos/{id}")
-	public ResponseEntity<Address> findById(@PathVariable Long id) {
+	@ResponseStatus(HttpStatus.OK)
+	public Address findById(@PathVariable Long id) {
 
-		Address address = service.findById(id);
-		return ResponseEntity.ok().body(address);
+		return service.findById(id);
 	}
 
 	@PostMapping(value = "/pessoas/{id}/endereco")
-	public ResponseEntity<Address> createAddress(@PathVariable Long id, @RequestBody Address address) {
-		Address newAddress = service.createAddress(id, address);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newAddress.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(newAddress);
+	@ResponseStatus(HttpStatus.CREATED)
+	public Address createAddress(@PathVariable Long id, @RequestBody Address address) {
+
+		return service.createAddress(id, address);
 	}
 
 	@PutMapping(value = "/enderecos/{id}")
-	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
-		Address newAddress = service.updateAddress(id, address);
-		return ResponseEntity.ok().body(newAddress);
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public Address updateAddress(@PathVariable Long id, @RequestBody Address address) {
+
+		return service.updateAddress(id, address);
 	}
 
 	@DeleteMapping(value = "/enderecos/{id}")
-	public ResponseEntity<Void> deleteAddress(@PathVariable Long id) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAddress(@PathVariable Long id) {
+		
 		service.deleteAddress(id);
-		return ResponseEntity.noContent().build();
 	}
 }

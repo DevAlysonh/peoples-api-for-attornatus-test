@@ -3,6 +3,7 @@ package com.peoples.apirest.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +23,21 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 255, nullable = false)
 	private String street;
+	
+	@Column(length = 50)
 	private String postalCode;
+	
+	@Column(length = 50)
 	private String number;
+	
+	@Column(length = 50)
 	private String city;
+	
+	@Column
+	private Boolean isMain = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "people_id")
@@ -92,6 +104,15 @@ public class Address implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+
+	public Boolean getIsMain() {
+		return isMain;
+	}
+
+	public void setIsMain(Boolean isMain) {
+		this.isMain = isMain;
 	}
 
 	@Override
