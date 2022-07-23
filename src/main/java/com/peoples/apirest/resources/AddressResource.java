@@ -1,11 +1,11 @@
 package com.peoples.apirest.resources;
 
-import java.net.URI;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.peoples.apirest.entities.Address;
 import com.peoples.apirest.services.AddressService;
@@ -43,14 +42,14 @@ public class AddressResource {
 
 	@PostMapping(value = "/pessoas/{id}/endereco")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Address createAddress(@PathVariable Long id, @RequestBody Address address) {
+	public Address createAddress(@PathVariable Long id, @RequestBody @Valid Address address) {
 
 		return service.createAddress(id, address);
 	}
 
 	@PutMapping(value = "/enderecos/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Address updateAddress(@PathVariable Long id, @RequestBody Address address) {
+	public Address updateAddress(@PathVariable Long id, @RequestBody @Valid Address address) {
 
 		return service.updateAddress(id, address);
 	}

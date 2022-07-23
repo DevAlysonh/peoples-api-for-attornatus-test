@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,15 +24,19 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank
 	@Column(length = 255, nullable = false)
 	private String street;
 	
+	@NotBlank
 	@Column(length = 50)
 	private String postalCode;
 	
+	@NotBlank
 	@Column(length = 50)
 	private String number;
 	
+	@NotBlank
 	@Column(length = 50)
 	private String city;
 	
