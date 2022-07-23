@@ -50,7 +50,7 @@ public class PeopleResource {
 
 	@PutMapping(value = "/pessoas/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public People updatePeople(@PathVariable Long id, @RequestBody People people) {
+	public People updatePeople(@PathVariable Long id, @RequestBody @Valid People people) {
 		return service.updatePeople(id, people);
 	}
 	
