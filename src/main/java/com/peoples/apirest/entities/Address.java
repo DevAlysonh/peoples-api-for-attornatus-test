@@ -37,7 +37,7 @@ public class Address implements Serializable {
 	private String city;
 	
 	@Column
-	private Boolean isMain = false;
+	private Number isMain = 0;
 	
 	@ManyToOne
 	@JoinColumn(name = "people_id")
@@ -48,13 +48,14 @@ public class Address implements Serializable {
 		
 	}
 
-	public Address(Long id, String street, String postalCode, String number, String city) {
+	public Address(Long id, String street, String postalCode, String number, String city, Number isMain) {
 		super();
 		this.id = id;
 		this.street = street;
 		this.postalCode = postalCode;
 		this.number = number;
 		this.city = city;
+		this.isMain = isMain;
 	}
 
 	public Long getId() {
@@ -107,11 +108,11 @@ public class Address implements Serializable {
 	}
 	
 
-	public Boolean getIsMain() {
+	public Number getIsMain() {
 		return isMain;
 	}
 
-	public void setIsMain(Boolean isMain) {
+	public void setIsMain(Number isMain) {
 		this.isMain = isMain;
 	}
 
