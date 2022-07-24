@@ -55,16 +55,19 @@ public class AddressService {
 		newAddress.setNumber(address.getNumber());
 		newAddress.setCity(address.getCity());
 	}
-	
-	/*Define se é o endereço principal do usuário*/
+
+	/* Define se é o endereço principal do usuário */
 	private void validateMainAddress(Address address) {
-		if(address.getIsMain() == null) {
+		if (address.getIsMain() == null) {
 			address.setIsMain(false);
 		}
-		
-		if(repository.findByIsMainAndPeople_Id(address.getIsMain(), address.getPeople().getId()).isPresent()) {
-			
-			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Endereço principal já está definido.");
+		if (address.getIsMain() == true) {
+			if (repository.findByIsMainAndPeople_Id(address.getIsMain(), address.getPeople().getId()).isPresent()) {
+
+				throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+						"Endereço principal já está definido.");
+			}
 		}
+
 	}
 }
