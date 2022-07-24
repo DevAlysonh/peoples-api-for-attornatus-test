@@ -63,4 +63,16 @@ class AddressServiceTest {
 
 	}
 
+	@Test
+	void updateAddressTest() {
+		Long id = 1L;
+		Address address = new Address(id, "Rua 01", "58052188", "22", "João Pesoa", false);
+		Address newAddress = new Address(id, "Rua 05", "55554444", "145", "Itabaiana", true);
+		
+		Mockito.when(repository.getReferenceById(id)).thenReturn(address);
+		Mockito.when(repository.save(newAddress)).thenReturn(newAddress);
+		
+		Assertions.assertEquals(newAddress, service.updateAddress(id, newAddress));
+		
+	}
 }
