@@ -72,5 +72,13 @@ class PeopleServiceTest {
 		Assertions.assertEquals(newPeople, service.updatePeople(id, newPeople));
 		
 	}
+	
+	@Test
+	void deletePeopleTest() {
+		Long id = 1L;
+		People people = new People(id, "Alyson Henrique", LocalDate.now());
+		
+		service.deletePeople(people.getId());
+	}
 
 }
