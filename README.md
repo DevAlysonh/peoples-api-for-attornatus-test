@@ -30,7 +30,7 @@ Temos dois endpoints: /pessoas  e /enderecos. Todas as requisições serão feit
  - **GET:** /pessoas/{id} -> Retorna uma única pessoa;
  - **POST:** /pessoas -> Salva uma pessoa na base de dados, o campo "name", não pode ser vazio;
  - **PUT:** /pessoas/{id} -> Atualiza os dados da pessoa;
- - **DELETE:** /pessoas -> Remove uma pessoa da base de dados.
+ - **DELETE:** /pessoas/{id} -> Remove uma pessoa da base de dados.
 
 ### Enderecos:
 ```shell
@@ -54,7 +54,7 @@ Temos dois endpoints: /pessoas  e /enderecos. Todas as requisições serão feit
  - **GET:** /enderecos/{id} -> Retorna um único endereço;
  - **POST:** /pessoas/{id}/enderecos -> Salva um endereço atribuído à pessoa que o está cadastrando. Importante lembrar que: só será possível cadastrar um endereço, se ao menos uma pessoa estiver cadastrada na base de dados (id =1), os campos são obrigatórios, exceto **"isMain"**, falaremos sobre ele ;
  - **PUT:** /enderecos/{id} -> Atualiza os dados do endereço;
- - **DELETE:** /enderecos-> Remove um endereço da base de dados
+ - **DELETE:** /enderecos/{id}-> Remove um endereço da base de dados
  .
 ## Campo isMain
 
