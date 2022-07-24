@@ -49,4 +49,18 @@ class AddressServiceTest {
 
 	}
 
+	@Test
+	void createAddressTest() {
+		People people = new People(1L, "Alyson", LocalDate.now());
+		Address address = new Address(1L, "Rua 01", "58052188", "22", "João Pesoa", false);
+		address.setPeople(people);
+
+		Mockito.when(peopleRepository.getReferenceById(1L)).thenReturn(people);
+		Mockito.when(repository.findByIsMainAndPeople_Id(false, 1L)).thenReturn(Optional.empty());
+		Mockito.when(repository.save(address)).thenReturn(address);
+
+		Assertions.assertEquals(address, service.createAddress(1L, address));
+
+	}
+
 }
