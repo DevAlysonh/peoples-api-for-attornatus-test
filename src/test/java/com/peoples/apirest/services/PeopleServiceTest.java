@@ -2,6 +2,7 @@ package com.peoples.apirest.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,17 @@ class PeopleServiceTest {
 		Mockito.when(repository.findAll()).thenReturn(peopleList);
 		
 		Assertions.assertNotNull(service.findAll());
+		
+	}
+	
+	@Test
+	void findPeopleById() {
+		Long id = 1L;
+		People people = new People(id, "Alyson Henrique", LocalDate.now());
+		
+		Mockito.when(repository.findById(id)).thenReturn(Optional.of(people));
+		
+		Assertions.assertNotNull(service.findById(id));
 		
 	}
 
