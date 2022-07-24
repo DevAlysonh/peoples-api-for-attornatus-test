@@ -75,4 +75,12 @@ class AddressServiceTest {
 		Assertions.assertEquals(newAddress, service.updateAddress(id, newAddress));
 		
 	}
+	
+	@Test
+	void deleteAddressTest() {
+		Long id = 1L;
+		Address address = new Address(id, "Rua 01", "58052188", "22", "João Pesoa", false);
+		
+		service.deleteAddress(address.getId());
+	}
 }
