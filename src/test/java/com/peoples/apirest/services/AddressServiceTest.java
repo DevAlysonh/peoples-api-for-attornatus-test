@@ -38,4 +38,15 @@ class AddressServiceTest {
 		Assertions.assertNotNull(service.findAll());
 	}
 
+	@Test
+	void findAddressByIdTest() {
+		final Long id = 1L;
+		Address address = new Address(1L, "Rua 01", "58052188", "22", "João Pesoa", false);
+
+		Mockito.when(repository.findById(id)).thenReturn(Optional.of(address));
+
+		Assertions.assertNotNull(service.findById(id));
+
+	}
+
 }
