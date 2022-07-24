@@ -30,8 +30,6 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/api")
-@Api(value = "API REST Cadastro de Pessoas e Endereços")
-@CrossOrigin(origins = "*")
 public class AddressResource {
 
 	@Autowired
@@ -39,7 +37,6 @@ public class AddressResource {
 
 	@GetMapping(value = "/enderecos")
 	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation(value = "Retorna todos os endereços cadastrados.")
 	public List<Address> findAll() {
 		
 		return service.findAll();
@@ -47,7 +44,6 @@ public class AddressResource {
 
 	@GetMapping(value = "/enderecos/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation(value = "Retorna um endereço cadastrado.")
 	public Address findById(@PathVariable Long id) {
 
 		return service.findById(id);
@@ -55,7 +51,6 @@ public class AddressResource {
 
 	@PostMapping(value = "/pessoas/{id}/endereco")
 	@ResponseStatus(HttpStatus.CREATED)
-	@ApiOperation(value = "Cadastra um novo endereço relacionando-o ao Id do usuário.")
 	public Address createAddress(@PathVariable Long id, @RequestBody @Valid Address address) {
 
 		return service.createAddress(id, address);
@@ -63,7 +58,6 @@ public class AddressResource {
 
 	@PutMapping(value = "/enderecos/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@ApiOperation(value = "Atualiza um endereço.")
 	public Address updateAddress(@PathVariable Long id, @RequestBody @Valid Address address) {
 
 		return service.updateAddress(id, address);
@@ -71,7 +65,6 @@ public class AddressResource {
 
 	@DeleteMapping(value = "/enderecos/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Deleta um endereço da base de dados.")
 	public void deleteAddress(@PathVariable Long id) {
 		
 		service.deleteAddress(id);
