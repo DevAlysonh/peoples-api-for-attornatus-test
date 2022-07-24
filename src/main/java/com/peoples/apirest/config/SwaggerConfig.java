@@ -18,29 +18,29 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.peoples.apirest"))
-                .paths(PathSelectors.regex("/api.*"))
-                .build()
-                .apiInfo(metaInfo());
-    }
 
-    private ApiInfo metaInfo() {
+	@Bean
+	 public Docket productApi() {
+	        return new Docket(DocumentationType.SWAGGER_2)
+	                .select()
+	                .apis(RequestHandlerSelectors.any())
+	                .paths(PathSelectors.any())
+	                .build()
+	                .apiInfo(metaInfo());
+	}
+	        
+	        private ApiInfo metaInfo() {
 
-        ApiInfo apiInfo = new ApiInfo(
-                "People Mannager API",
-                "API REST simples para manipulação de pessoas e endereços",
-                "1.0",
-                "Terms of Service",
-                new Contact("Alyson Henrique", "dev.alysonh@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
-        );
+	            ApiInfo apiInfo = new ApiInfo(
+	                    "API REST",
+	                    "API REST Para Cadastro de Pessoas e Endereços",
+	                    "1.0",
+	                    "Terms of Service",
+	                    null, "Apache License Version 2.0",
+	                    "https://www.apache.org/licesen.html"
+	            );
 
-        return apiInfo;
-    }
+	            return apiInfo;
+	        }
     
 }
