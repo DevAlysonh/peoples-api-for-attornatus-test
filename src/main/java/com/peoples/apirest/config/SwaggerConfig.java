@@ -31,12 +31,13 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "API REST",
-                "API REST de cadastro de pessoas e emdereços.",
+                "People Mannager API",
+                "API REST simples para manipulação de pessoas e endereços",
                 "1.0",
                 "Terms of Service",
-                null, "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html"
+                new Contact("Alyson Henrique", "dev.alysonh@gmail.com"),
+                "Apache License Version 2.0",
+                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
         );
 
         return apiInfo;
