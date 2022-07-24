@@ -49,5 +49,16 @@ class PeopleServiceTest {
 		Assertions.assertNotNull(service.findById(id));
 		
 	}
+	
+	@Test
+	void createPeopleTest() {
+		Long id = 1L;
+		People people = new People(id, "Alyson Henrique", LocalDate.now());
+		
+		Mockito.when(repository.save(people)).thenReturn(people);
+		
+		Assertions.assertNotNull(service.createPeople(people));
+	}
+	
 
 }
